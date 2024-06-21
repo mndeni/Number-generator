@@ -1,0 +1,42 @@
+{% extends 'base.twig' %}
+
+{% block title %}Form Page{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h4 class="mb-4">Please provide QTY of numbers to generate and country code</h4>
+        <form action="/submit" method="POST">
+            <div class="form-group">
+                <label for="inputField">Number Generation QTY</label>
+                <input type="text" class="form-control" id="inputField" name="inputField" required>
+            </div>
+            <div class="form-group">
+                <label for="dropdown">Country Code</label>
+                <select class="form-control" id="dropdown" name="dropdown">
+                    <option value="option1">ZAF</option>
+                    <option value="option2">IND</option>
+                    <option value="option3">PAK</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Generate test numbers</button>
+        </form>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-6 offset-md-3">
+        <h2 class="mb-4">Phone number results:</h2>
+        {% if error %}
+            <div class="alert alert-danger">{{ error }}</div>
+        {% endif %}
+        {% if results %}
+            <ul class="list-group">
+                {% for result in results %}
+                    <li class="list-group-item">{{ result }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
